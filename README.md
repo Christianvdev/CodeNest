@@ -1,32 +1,63 @@
-# React + TypeScript + Vite
+# CodeNest
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+CodeNest is a browser-based coding playground built with React, TypeScript, and Vite. It provides a VS Code-inspired environment for writing and testing HTML, CSS, and JavaScript directly in your browser.
 
-Currently, two official plugins are available:
+The goal is to create a lightweight, accessible development tool without requiring a backend or local development setup.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Monaco Editor** — Syntax highlighting and code editing.
+- **File Switching** — Edit HTML, CSS, and JavaScript independently.
+- **Code Preview** — Render HTML, CSS, and JavaScript in an embedded iframe.
+- **Run Code** — Execute updated code on demand.
+- **Reset File** — Clear the currently selected file.
+- **Local Auto-Save (In Progress)** — Save code to browser storage.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the Oxlint configuration
+- React
+- TypeScript
+- Vite
+- Monaco Editor
+- HTML / CSS
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Getting Started
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/CodeNest.git
+cd CodeNest
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open the local URL provided by Vite.
+
+## Planned Features
+
+- Complete local storage persistence
+- Built-in JavaScript console
+- Downloadable project files
+- Improved editor controls and layout
+- Additional UI customization
+
+## Project Status
+
+**In active development.**
+
+CodeNest currently supports editing and executing basic HTML, CSS, and JavaScript. Additional features and interface improvements are being developed.
+
+## License
+
+No license has been selected yet.
