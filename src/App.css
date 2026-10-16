@@ -1,0 +1,94 @@
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #111827;
+  color: white;
+}
+.file {
+  padding: 10px;
+  background-color:#111827;
+  color: #F8FAFC;
+
+  box-shadow: 4px 4px 20px black;
+
+  font-size: 1.2em;
+  width: 100%;
+  border-radius: 10px;
+
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  transition: all .2s ease;
+  
+
+  margin-bottom: 1rem;
+}
+
+.file:hover{
+  transform: translateX(10px);
+  box-shadow: -4px 4px 20px black;
+  background-color:#542bface;
+  
+}
+
+.file-active{
+  background-color:#7C5CFC;
+  
+} 
+.toolbar {
+  height: 60px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #141720;
+}
+.toolbar button{
+  background-color: #7C5CFC;
+  color: #F8FAFC;
+  padding: 12px;
+  border-radius: 50px;
+}
+.workspace {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+.sidebar-container{
+  width: 200px;
+  padding: 20px;
+  background: #10131C;
+}
+.sidebar {
+  height: 80vh;
+  background-color: #1A2030;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.editor {
+  flex: 1;
+  padding: 20px;
+  background: #171B28;
+  font-family: "Consolas", "Courier New", monospace;
+}
+.preview-container{
+  width: 35%;
+  padding: 20px;
+  background: #10131C;
+  color: #111827;
+}
+.preview {
+  background-color: #F9FAFB;
+  height: 80vh;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+.reset{ 
+  background-color:#7C5CFC;
+  color: #F8FAFC;
+  font-size: 1.2em;
+  width: 10%;
+  border-radius: 10px;
+}
