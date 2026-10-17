@@ -1,5 +1,5 @@
 import "./App.css";
-import {use, useEffect, useState } from "react";
+import {useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 
 type FileName = "index.html" | "style.css" | "script.js";
@@ -8,25 +8,30 @@ function App() {
   const [activeFile, setActiveFile] = useState<FileName>("index.html")
   const [renderedCode, setRenderedCode] = useState<string>("");
 
-
-
   
-  const [files, setFiles] = useState<Record<FileName, string>>({
-      "index.html": "<h1>Hello World!</h1>",
-      "style.css": "h1 { color: purple; }",
-      "script.js": "console.log('Hello!');",
-    });
+  const [files, setFiles] = useState<Record<FileName, string>>(() => {
+  const savedCode = localStorage.getItem("code");
+
+  if (savedCode) {
+    try {
+      return JSON.parse(savedCode);
+    } catch {
+      console.error("Failed to load saved code");
+    }
+  }
+
+  return {
+    "index.html": "<h1>Hello World!</h1>",
+    "style.css": "h1 { color: purple; }",
+    "script.js": "console.log('Hello!');",
+  };
+});
 
 
   useEffect(() => {
-    const savedCode = JSON.stringify(files)
-    localStorage.setItem("code", savedCode)
+    localStorage.setItem("code", JSON.stringify(files))
     
   },[files])
-
-  useEffect(() => {
-    localStorage.getItem("code");
-  },[])
 
 
 
