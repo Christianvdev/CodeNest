@@ -33,9 +33,6 @@ function App() {
     
   },[files])
 
-
-
-
     function updateCode(newCode: string) {
       const updatedFiles = { ...files };
 
@@ -56,8 +53,6 @@ function App() {
       }
     }
 
-
-
     const previewCode = `
       <style>
         ${files["style.css"]}
@@ -69,6 +64,31 @@ function App() {
         ${files["script.js"]}
       </script>
     `
+
+    function confirmReset() {
+      if(confirm("Are you sure you want to reset?")){
+        updateCode("")
+      }
+    }
+
+    function DownloadStaticFile(){
+      const blob = new Blob([previewCode], {type: "text/html"})
+      const url = URL.createObjectURL(blob)
+
+      const element = document.createElement("a");
+      element.href = url;
+      element.download = "codenest-project.html"
+
+      document.body.appendChild(element);
+    element.click();
+    
+    document.body.removeChild(element);
+    URL.revokeObjectURL(url);
+    }
+
+
+
+    
 
     
   return (
@@ -107,9 +127,10 @@ function App() {
               value={files[activeFile]}
               onChange={(value) => updateCode(value ?? "")}
             />
-            <button className="reset" onClick={() => updateCode("")}>
+            <button className="reset" onClick={() => confirmReset()}>
               reset
             </button>
+            <button onClick={ () => DownloadStaticFile()}>download html</button>
           </section>
 
         <section className="preview-container">
