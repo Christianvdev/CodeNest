@@ -1,5 +1,5 @@
 import "./App.css";
-import {useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 
 type FileName = "index.html" | "style.css" | "script.js";
@@ -65,11 +65,23 @@ function App() {
       </script>
     `
 
+
     function confirmReset() {
       if(confirm("Are you sure you want to reset?")){
         updateCode("")
       }
     }
+
+    function handleRunCode() {
+    setRenderedCode(previewCode);
+  }
+
+  const handleRunKey = (event: React.KeyboardEvent) => {
+    if((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "r"){
+      event.preventDefault()
+      handleRunCode()
+    }
+  }
 
     function DownloadStaticFile(){
       const blob = new Blob([previewCode], {type: "text/html"})
@@ -92,11 +104,11 @@ function App() {
 
     
   return (
-    <div className="app">
+    <div className="app" onKeyDown={handleRunKey}>
       
       <header className="toolbar">
         <h2>CodeNest</h2>
-        <button onClick={() => setRenderedCode(previewCode)}>
+        <button onClick={() => handleRunCode()}>
         Run Code</button>
       </header>
 
@@ -130,20 +142,27 @@ function App() {
             <button className="reset" onClick={() => confirmReset()}>
               reset
             </button>
-            <button onClick={ () => DownloadStaticFile()}>download html</button>
+            <button onClick={ () => DownloadStaticFile()}>download code</button>
           </section>
 
         <section className="preview-container">
+          <div className="preview-container-item">
+            <section className="preview ">
+              <iframe
+                title="CodeNest Preview"
+                srcDoc={renderedCode}
+                sandbox="allow-scripts"
+              />
+            </section>
+          </div>
 
-          <section className="preview">
-          <iframe
-            title="CodeNest Preview"
-            srcDoc={renderedCode}
-            sandbox="allow-scripts"
-          />
+          <div className="preview-container-item">
+            <section >
+              <h1>Console goes here</h1>
+            </section>
+          </div>
 
           </section>
-        </section>
         
       </main>
 
