@@ -186,7 +186,7 @@ function App() {
             <section >
               <div className="console">
                 <h4>Console:</h4>
-                <button className="clear-console" onClick={() => setLogs([''])}>
+                <button className="clear-console" onClick={() => setLogs([])}>
                 clear console
                 </button>
                 {logs.map((log, index) => (
