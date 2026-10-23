@@ -50,3 +50,6 @@ React · TypeScript · Vite · Monaco Editor · HTML · CSS · JavaScript
 ## Status
 
 Functional MVP. Improvements to console error handling, editor experience, and layout are planned.
+
+## Live URL:
+https://codenesteditor.netlify.app/
