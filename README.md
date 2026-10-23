@@ -1,63 +1,52 @@
 # CodeNest
 
-CodeNest is a browser-based coding playground built with React, TypeScript, and Vite. It provides a VS Code-inspired environment for writing and testing HTML, CSS, and JavaScript directly in your browser.
-
-The goal is to create a lightweight, accessible development tool without requiring a backend or local development setup.
+CodeNest is a lightweight, browser-based HTML, CSS, and JavaScript playground built with **React, TypeScript, Vite, and Monaco Editor**. Write code in separate files, run it in a sandboxed preview, and inspect basic console output without creating a local project.
 
 ## Features
 
-- **Monaco Editor** — Syntax highlighting and code editing.
-- **File Switching** — Edit HTML, CSS, and JavaScript independently.
-- **Code Preview** — Render HTML, CSS, and JavaScript in an embedded iframe.
-- **Run Code** — Execute updated code on demand.
-- **Reset File** — Clear the currently selected file.
-- **Local Auto-Save (In Progress)** — Save code to browser storage.
+- **Monaco Editor:** Syntax highlighting and dedicated HTML, CSS, and JavaScript files
+- **Run Code:** Execute the current project in a sandboxed iframe; repeated runs restart the preview
+- **JavaScript Console:** Display messages from `console.log()` and clear the console
+- **Autosave:** Persist editor contents in browser local storage
+- **Download:** Export a self-contained HTML file with the project's HTML, CSS, and JavaScript
+- **Reset:** Clear the active file after confirmation
+- **Shortcut:** Ctrl+R / Cmd+R while working within the app to rerun the project
 
-## Tech Stack
-
-- React
-- TypeScript
-- Vite
-- Monaco Editor
-- HTML / CSS
-
-## Getting Started
-
-Clone the repository:
+## Getting started
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/CodeNest.git
+git clone https://github.com/Christianvdev/CodeNest.git
 cd CodeNest
-```
-
-Install dependencies:
-
-```bash
 npm install
-```
-
-Start the development server:
-
-```bash
 npm run dev
 ```
 
-Open the local URL provided by Vite.
+Open the local URL shown by Vite.
 
-## Planned Features
+## Production build
 
-- Complete local storage persistence
-- Built-in JavaScript console
-- Downloadable project files
-- Improved editor controls and layout
-- Additional UI customization
+```bash
+npm run build
+npm run preview
+```
 
-## Project Status
+For Netlify, use `npm run build` as the build command and `dist` as the publish directory.
 
-**In active development.**
+## How it works
 
-CodeNest currently supports editing and executing basic HTML, CSS, and JavaScript. Additional features and interface improvements are being developed.
+CodeNest keeps the three editor files in React state and saves them to `localStorage`. When you press **Run Code**, the app assembles the HTML, CSS, and JavaScript into an iframe `srcDoc` document. The iframe uses `sandbox="allow-scripts"`. Console messages are sent to the parent application with `postMessage`.
 
-## License
+## Current limitations
 
-No license has been selected yet.
+- The custom console captures `console.log()` messages, not all warnings, errors, or thrown exceptions.
+- Code execution is browser-based and supports HTML, CSS, and JavaScript, not server-side languages.
+- Projects are stored in the current browser rather than synced across devices.
+- Download exports a single HTML file, not a multi-file ZIP.
+
+## Stack
+
+React · TypeScript · Vite · Monaco Editor · HTML · CSS · JavaScript
+
+## Status
+
+Functional MVP. Improvements to console error handling, editor experience, and layout are planned.
