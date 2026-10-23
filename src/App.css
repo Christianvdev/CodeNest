@@ -1,5 +1,4 @@
-/* CodeNest: graphite workbench, green accents, macOS action pills. */
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
 /* Theme tokens */
 :root {
   --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter",
@@ -356,7 +355,8 @@ button {
 
 /* Muted action pills */
 .toolbar > button,
-.editor > button {
+.editor > button
+{
   justify-content: center;
   align-self: center;
   justify-self: start;
@@ -720,4 +720,37 @@ button {
   .sidebar > button.file:focus-visible {
     outline-color: Highlight;
   }
+}
+
+.console{
+  background-color: #111315;
+  width: 100%;
+  height: 100vh;
+
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.clear-console{
+  justify-content: center;
+  align-self: center;
+  justify-self: start;
+  flex: 0 0 auto;
+  width: max-content;
+  height: 36px;
+  min-height: 36px;
+  max-width: 100%;
+  padding: 0 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background-color: var(--surface-raised);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.025), transparent);
+  color: var(--foreground);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 1px 2px rgba(0, 0, 0, 0.18);
+
+  font-family: var(--font-ui);
 }

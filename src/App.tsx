@@ -33,6 +33,21 @@ function App() {
     
   },[files])
 
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+    if (event.data?.type === "console" &&
+        typeof event.data.message === "string") {
+        setLogs(prev => [...prev, event.data.message]);
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, []);
+
     function updateCode(newCode: string) {
       const updatedFiles = { ...files };
 
@@ -61,6 +76,13 @@ function App() {
       ${files["index.html"]}
       
       <script>
+        const originalLog = console.log
+
+        console.log = (...args) =>{
+          originalLog(...args);
+          window.parent.postMessage({type: "console", message: args.join(" ") }, "*")
+        }
+
         ${files["script.js"]}
       </script>
     `
@@ -72,9 +94,12 @@ function App() {
       }
     }
 
+    const [runCount, setRunCount] = useState(0);
     function handleRunCode() {
-    setRenderedCode(previewCode);
-  }
+      setLogs([]);
+      setRenderedCode(previewCode);
+      setRunCount(prev => prev + 1);
+    }
 
   const handleRunKey = (event: React.KeyboardEvent) => {
     if((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "r"){
@@ -102,7 +127,7 @@ function App() {
 
     
 
-    
+  const [logs, setLogs] = useState<string[]>([]);
   return (
     <div className="app" onKeyDown={handleRunKey}>
       
@@ -149,6 +174,7 @@ function App() {
           <div className="preview-container-item">
             <section className="preview ">
               <iframe
+                key={runCount}
                 title="CodeNest Preview"
                 srcDoc={renderedCode}
                 sandbox="allow-scripts"
@@ -158,8 +184,21 @@ function App() {
 
           <div className="preview-container-item">
             <section >
-              <h1>Console goes here</h1>
+              <div className="console">
+                <h4>Console:</h4>
+                <button className="clear-console" onClick={() => setLogs([''])}>
+                clear console
+                </button>
+                {logs.map((log, index) => (
+                  <p key={index}>{log}</p>
+                ))}
+
+                
+              </div>
+
+              
             </section>
+            
           </div>
 
           </section>
